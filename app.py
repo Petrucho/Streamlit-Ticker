@@ -20,9 +20,9 @@ chart_high = st.sidebar.checkbox('High')
 chart_low = st.sidebar.checkbox('Low')
 chart_close = st.sidebar.checkbox('Close')
 chart_volume = st.sidebar.checkbox('Volume')
-#chart_dividends = st.sidebar.checkbox('Dividents')
-#chart_stock = st.sidebar.checkbox('Stock')
-#chart_splits = st.sidebar.checkbox('Splits')
+chart_dividends = st.sidebar.checkbox('Dividends')
+chart_stock = st.sidebar.checkbox('Stock Splits')
+
 
 #get data on this ticker
 ticker_data = yf.Ticker(ticker_symbol)
@@ -61,11 +61,14 @@ if chart_volume:
   """)
   st.line_chart(ticker_df.Volume)
 
-#if chart_dividends:  
- # st.line_chart(ticker_df.Dividents)
+if chart_dividends:  
+  st.write("""
+  ## Dividends
+  """)
+  st.line_chart(ticker_df.Dividends)
 
-#if chart_stock:  
- # st.line_chart(ticker_df.Stock)
-
-#if chart_splits:  
- # st.line_chart(ticker_df.Splits)  
+if chart_stock:  
+  st.write("""
+  ## Stock Splits
+  """)
+  st.line_chart(ticker_df[('Stock Splits')])
